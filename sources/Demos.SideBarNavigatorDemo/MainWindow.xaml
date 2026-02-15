@@ -1,0 +1,27 @@
+﻿<Window
+    x:Class="Demos.SideBarNavigatorDemo.MainWindow"
+    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpfcc="clr-namespace:DustInTheWind.WpfTools.CustomControls;assembly=DustInTheWind.WpfTools.CustomControls"
+    
+    mc:Ignorable="d"
+    Title="MainWindow"
+    Height="450"
+    Width="800">
+
+    <wpfcc:SideBarNavigator>
+
+        <TabItem Header="aaa">
+            <TextBlock Text="aaa"/>
+        </TabItem>
+
+        <TabItem Header="bbb">
+            <TextBlock Text="bbb"/>
+        </TabItem>
+
+    </wpfcc:SideBarNavigator>
+
+</Window>
