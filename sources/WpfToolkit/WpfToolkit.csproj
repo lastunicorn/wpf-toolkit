@@ -6,7 +6,7 @@
 		<AssemblyName>DustInTheWind.$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>DustInTheWind.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Description>A collection of WPF custom controls and and other tools.</Description>
+		<Description>A collection of WPF custom controls, data converters and other tools.</Description>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>wpf;toolkit;custom-controls</PackageTags>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
