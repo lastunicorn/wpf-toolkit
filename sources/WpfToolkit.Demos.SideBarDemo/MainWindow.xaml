@@ -7,17 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpfToolkit="clr-namespace:DustInTheWind.WpfToolkit;assembly=DustInTheWind.WpfToolkit"
     xmlns:local="clr-namespace:DustInTheWind.WpfToolkit.Demos.SideBarDemo"
+    xmlns:pages="clr-namespace:DustInTheWind.WpfToolkit.Demos.SideBarDemo.Pages"
     
     mc:Ignorable="d"
     Title="SideBar Demo"
     Height="450"
     Width="800"
-    ResizeMode="CanResizeWithGrip">
-
-    <Window.Resources>
-        <local:OneTwoThreeCommand x:Key="OneTwoThreeCommand" />
-        <local:FourFiveSixCommand x:Key="FourFiveSixCommand" />
-    </Window.Resources>
+    ResizeMode="CanResizeWithGrip"
+    d:DataContext="{d:DesignInstance local:MainViewModel}">
 
     <wpfToolkit:SideBar>
 
@@ -28,13 +25,7 @@
                     Fill="#808080"/>
             </wpfToolkit:SideBarItem.Header>
 
-            <Border>
-                <TextBlock
-                    Text="aaa"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="40"/>
-            </Border>
+            <pages:TrianglePage DataContext="{Binding TrianglePageModel}"/>
         </wpfToolkit:SideBarItem>
 
         <wpfToolkit:SideBarItem>
@@ -45,11 +36,7 @@
                     Fill="#808080"/>
             </wpfToolkit:SideBarItem.Header>
 
-            <TextBlock
-                Text="bbb"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="40"/>
+            <pages:SquarePage DataContext="{Binding SquarePageModel}"/>
         </wpfToolkit:SideBarItem>
 
         <wpfToolkit:SideBarItem>
@@ -60,21 +47,17 @@
                     Fill="#808080"/>
             </wpfToolkit:SideBarItem.Header>
 
-            <TextBlock
-                Text="ccc"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="40"/>
+            <pages:CirclePage DataContext="{Binding CirclePageModel}"/>
         </wpfToolkit:SideBarItem>
 
         <wpfToolkit:SideBar.Buttons>
             <Button
                 Content="123"
-                Command="{StaticResource OneTwoThreeCommand}"/>
+                Command="{Binding OneTwoThreeCommand}"/>
 
             <Button
                 Content="456"
-                Command="{StaticResource FourFiveSixCommand}"/>
+                Command="{Binding FourFiveSixCommand}"/>
         </wpfToolkit:SideBar.Buttons>
 
     </wpfToolkit:SideBar>

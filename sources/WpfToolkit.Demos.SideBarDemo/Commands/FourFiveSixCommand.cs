@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace DustInTheWind.WpfToolkit.Demos.SideBarDemo;
+namespace DustInTheWind.WpfToolkit.Demos.SideBarDemo.Commands;
 
-internal class FourFiveSixCommand : ICommand
+public class FourFiveSixCommand : ICommand
 {
     public event EventHandler CanExecuteChanged;
 

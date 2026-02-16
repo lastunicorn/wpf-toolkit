@@ -2,24 +2,7 @@
     x:Class="DustInTheWind.WpfToolkit.Demos.SideBarDemo.App"
     
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"/>
     
-    StartupUri="MainWindow.xaml">
 
-    <Application.Resources>
-
-        <SolidColorBrush x:Key="SideBar_ForegroundBrush" Color="Black"/>
-        <SolidColorBrush x:Key="SideBar_BorderBrush" Color="Blue"/>
-        <SolidColorBrush x:Key="SideBar_BackgroundBrush" Color="LightGray"/>
-
-        <SolidColorBrush x:Key="SideBar_Item_Selected_BackgroundBrush" Color="Gray"/>
-        <SolidColorBrush x:Key="SideBar_Item_Selected_BorderBrush" Color="Gray"/>
-        <SolidColorBrush x:Key="SideBar_Item_MouseOver_BackgroundBrush" Color="Gray"/>
-
-        <SolidColorBrush x:Key="SideBar_Button_HoverBrush" Color="Gray"/>
-        <SolidColorBrush x:Key="SideBar_Button_PressedBrush" Color="Gray"/>
-
-    </Application.Resources>
-    
-</Application>
 
