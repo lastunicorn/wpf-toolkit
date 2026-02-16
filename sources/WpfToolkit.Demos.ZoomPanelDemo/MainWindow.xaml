@@ -1,0 +1,29 @@
+﻿<Window
+    x:Class="DustInTheWind.WpfToolkit.Demos.ZoomPanelDemo.MainWindow"
+    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpfToolkit="clr-namespace:DustInTheWind.WpfToolkit;assembly=DustInTheWind.WpfToolkit"
+    
+    mc:Ignorable="d"
+    Title="ZoomPanel Demo"
+    Height="450"
+    Width="800"
+    ResizeMode="CanResizeWithGrip">
+
+    <wpfToolkit:ZoomPanel
+        Margin="30"
+        BorderBrush="Black"
+        Background="#e9e9e9">
+
+    <TextBlock
+            Text="Zoom and pan me!"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="40"/>
+
+    </wpfToolkit:ZoomPanel>
+    
+</Window>

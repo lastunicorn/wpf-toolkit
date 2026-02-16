@@ -1,6 +1,10 @@
 <Solution>
   <Folder Name="/Demos/">
-    <Project Path="WpfToolkit.Demos.SideBarDemo/Demos.SideBarDemo.csproj" Id="515f6a4c-7b5e-4596-898f-2acb2f701ad1" />
+    <Project Path="WpfToolkit.Demos.ZoomPanelDemo/WpfToolkit.Demos.ZoomPanelDemo.csproj" Id="f63ec316-93e7-4c0d-9b79-8de8f38e4799" />
+    <Project Path="WpfToolkit.Demos.SideBarDemo/WpfToolkit.Demos.SideBarDemo.csproj" Id="515f6a4c-7b5e-4596-898f-2acb2f701ad1" />
+  </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path="Directory.Build.props" />
   </Folder>
   <Project Path="WpfToolkit/WpfToolkit.csproj" />
 </Solution>

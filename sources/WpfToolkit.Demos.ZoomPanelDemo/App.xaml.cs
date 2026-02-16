@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace DustInTheWind.WpfToolkit.Demos.SideBarDemo;
+namespace DustInTheWind.WpfToolkit.Demos.ZoomPanelDemo;
 
 /// <summary>
 /// Interaction logic for App.xaml
