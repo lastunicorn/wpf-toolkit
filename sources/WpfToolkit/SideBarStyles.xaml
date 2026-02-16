@@ -96,7 +96,8 @@
                         </Border>
 
                         <ContentPresenter
-                            Content="{TemplateBinding SelectedContent}" />
+                            Content="{TemplateBinding SelectedContent}"
+                            ContentTemplate="{TemplateBinding SelectedContentTemplate}"  />
 
                     </DockPanel>
                 </ControlTemplate>
@@ -130,6 +131,8 @@
 
                     <Setter Property="SelectedBackground" Value="{Binding ItemSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type wpfToolkit:SideBar}}}" />
                     <Setter Property="MouseOverBackground" Value="{Binding ItemMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type wpfToolkit:SideBar}}}" />
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="IsTabStop" Value="True" />
 
                     <!--
                     Template for the checked button displayed in the side bar.

@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows;
-using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -14,14 +13,14 @@ public class SideBar : Selector
 
     public static readonly DependencyProperty ButtonsProperty = DependencyProperty.Register(
         nameof(Buttons),
-        typeof(ObservableCollection<Button>),
+        typeof(ObservableCollection<ButtonBase>),
         typeof(SideBar),
         new PropertyMetadata(null)
     );
 
-    public ObservableCollection<Button> Buttons
+    public ObservableCollection<ButtonBase> Buttons
     {
-        get => (ObservableCollection<Button>)GetValue(ButtonsProperty);
+        get => (ObservableCollection<ButtonBase>)GetValue(ButtonsProperty);
         set => SetValue(ButtonsProperty, value);
     }
 
@@ -76,6 +75,22 @@ public class SideBar : Selector
     {
         get => GetValue(SelectedContentProperty);
         private set => SetValue(SelectedContentPropertyKey, value);
+    }
+
+    #endregion
+
+    #region SelectedContentTemplate DependencyProperty
+
+    public static readonly DependencyProperty SelectedContentTemplateProperty = DependencyProperty.Register(
+        nameof(SelectedContentTemplate),
+        typeof(DataTemplate),
+        typeof(SideBar),
+        new PropertyMetadata(null));
+
+    public DataTemplate SelectedContentTemplate
+    {
+        get => (DataTemplate)GetValue(SelectedContentTemplateProperty);
+        set => SetValue(SelectedContentTemplateProperty, value);
     }
 
     #endregion

@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace DustInTheWind.WpfToolkit;
@@ -102,10 +103,27 @@ public class SideBarItem : ContentControl
         DefaultStyleKeyProperty.OverrideMetadata(typeof(SideBarItem), new FrameworkPropertyMetadata(typeof(SideBarItem)));
     }
 
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        base.OnKeyDown(e);
+
+        if (e.Key == Key.Space || e.Key == Key.Enter)
+        {
+            SelectThisItem();
+            e.Handled = true;
+        }
+    }
+
     protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
     {
         base.OnMouseLeftButtonDown(e);
 
+        SelectThisItem();
+        e.Handled = true;
+    }
+
+    private void SelectThisItem()
+    {
         SideBar sideBar = FindParentSideBar();
         
         if (sideBar != null)
@@ -116,8 +134,6 @@ public class SideBarItem : ContentControl
                 ? this
                 : item;
         }
-
-        e.Handled = true;
     }
 
     private SideBar FindParentSideBar()
