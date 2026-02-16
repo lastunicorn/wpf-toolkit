@@ -3,23 +3,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:wpfToolkit="clr-namespace:DustInTheWind.WpfToolkit">
 
-    <SolidColorBrush x:Key="Dust_SideBar_ForegroundBrush" Color="Black"/>
-    <SolidColorBrush x:Key="Dust_SideBar_BorderBrush" Color="Gray"/>
-    <SolidColorBrush x:Key="Dust_SideBar_BackgroundBrush" Color="Gray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_ForegroundBrush" Color="Black" />
+    <SolidColorBrush x:Key="Dust_SideBar_BackgroundBrush" Color="#e8e8e8" />
+    <SolidColorBrush x:Key="Dust_SideBar_BorderBrush" Color="#c0c0c0" />
 
-    <SolidColorBrush x:Key="Dust_SideBar_Item_Selected_BackgroundBrush" Color="LightGray"/>
-    <SolidColorBrush x:Key="Dust_SideBar_Item_Selected_BorderBrush" Color="LightGray"/>
-    <SolidColorBrush x:Key="Dust_SideBar_Item_MouseOver_BackgroundBrush" Color="LightGray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Item_MouseOver_BackgroundBrush" Color="#d0d0d0"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Item_Selected_BackgroundBrush" Color="#b0b0b0"/>
 
-    <SolidColorBrush x:Key="Dust_SideBar_Button_HoverBrush" Color="Gray"/>
-    <SolidColorBrush x:Key="Dust_SideBar_Button_PressedBrush" Color="Gray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Button_MouseOver_BackgroundBrush" Color="#d0d0d0"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Button_Pressed_BackgroundBrush" Color="#b0b0b0"/>
 
     <Style TargetType="{x:Type wpfToolkit:SideBar}">
         <Setter Property="Foreground" Value="{StaticResource Dust_SideBar_ForegroundBrush}" />
         <Setter Property="Background" Value="{StaticResource Dust_SideBar_BackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource Dust_SideBar_BorderBrush}" />
-        <Setter Property="Padding" Value="5 5 5 10" />
+        <Setter Property="ItemSelectedBackground" Value="{StaticResource Dust_SideBar_Item_Selected_BackgroundBrush}" />
+        <Setter Property="ItemMouseOverBackground" Value="{StaticResource Dust_SideBar_Item_MouseOver_BackgroundBrush}" />
+        <Setter Property="Padding" Value="5" />
         <Setter Property="Margin" Value="0" />
+        <Setter Property="IsTabStop" Value="False" />
 
         <!--
         ================================================================================================
@@ -44,14 +46,57 @@
 
                                 <ItemsControl
                                     DockPanel.Dock="Bottom"
-                                    ItemsSource="{TemplateBinding Buttons}" />
+                                    ItemsSource="{TemplateBinding Buttons}"
+                                    IsTabStop="False">
+
+                                    <ItemsControl.Resources>
+                                        <Style TargetType="{x:Type Button}">
+
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border
+                                                            x:Name="PART_Panel"
+                                                            Margin="5"
+                                                            CornerRadius="2"
+                                                            Width="40"
+                                                            Height="40"
+                                                            Background="Transparent">
+
+                                                            <ContentPresenter
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"
+                                                                Content="{TemplateBinding Content}"
+                                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+
+                                                        </Border>
+
+                                                        <ControlTemplate.Triggers>
+
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="PART_Panel" Property="Background" Value="{StaticResource Dust_SideBar_Button_MouseOver_BackgroundBrush}" />
+                                                            </Trigger>
+
+                                                            <Trigger Property="IsPressed" Value="True">
+                                                                <Setter TargetName="PART_Panel" Property="Background" Value="{StaticResource Dust_SideBar_Button_Pressed_BackgroundBrush}" />
+                                                            </Trigger>
+                                                            
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ItemsControl.Resources>
+
+                                </ItemsControl>
 
                                 <ItemsPresenter />
 
                             </DockPanel>
                         </Border>
 
-                        <ContentPresenter Content="{TemplateBinding SelectedContent}" />
+                        <ContentPresenter
+                            Content="{TemplateBinding SelectedContent}" />
 
                     </DockPanel>
                 </ControlTemplate>
@@ -67,7 +112,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Background="Transparent" />
+                    <StackPanel/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -83,20 +128,13 @@
 
                 <Style TargetType="{x:Type wpfToolkit:SideBarItem}">
 
-                    <Setter Property="SelectedBackground" Value="{StaticResource SideBar_Item_Selected_BackgroundBrush}" />
-                    <Setter Property="MouseOverBackground" Value="{StaticResource SideBar_Item_MouseOver_BackgroundBrush}" />
+                    <Setter Property="SelectedBackground" Value="{Binding ItemSelectedBackground, RelativeSource={RelativeSource AncestorType={x:Type wpfToolkit:SideBar}}}" />
+                    <Setter Property="MouseOverBackground" Value="{Binding ItemMouseOverBackground, RelativeSource={RelativeSource AncestorType={x:Type wpfToolkit:SideBar}}}" />
 
-                    <Setter Property="HeaderTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <ContentControl
-                                    Content="{Binding}"
-                                    FontSize="{DynamicResource DefaultFontSize}"
-                                    IsTabStop="False" />
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-
+                    <!--
+                    Template for the checked button displayed in the side bar.
+                    It applyes mouse over styles on it.
+                    -->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type wpfToolkit:SideBarItem}">
@@ -121,8 +159,6 @@
 
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter TargetName="PART_Panel" Property="Background" Value="{Binding SelectedBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                        <Setter TargetName="PART_Panel" Property="BorderBrush" Value="{StaticResource SideBar_Item_Selected_BorderBrush}" />
-                                        <Setter TargetName="PART_Panel" Property="BorderThickness" Value="1" />
                                     </Trigger>
 
                                     <MultiTrigger>
@@ -141,6 +177,20 @@
                                 </ControlTemplate.Triggers>
 
                             </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <!---
+                    Template for the content of the check button.
+                    -->
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentControl
+                                    Content="{Binding}"
+                                    FontSize="{DynamicResource DefaultFontSize}"
+                                    IsTabStop="False"/>
+                            </DataTemplate>
                         </Setter.Value>
                     </Setter>
 

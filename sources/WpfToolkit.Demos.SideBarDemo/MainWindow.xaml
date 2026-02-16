@@ -10,19 +10,66 @@
     mc:Ignorable="d"
     Title="SideBar Demo"
     Height="450"
-    Width="800">
+    Width="800"
+    ResizeMode="CanResizeWithGrip">
 
     <wpfToolkit:SideBar>
 
-        <wpfToolkit:SideBarItem Header="aaa">
-            <Border Background="Aqua">
-                <TextBlock Text="aaa"/>
+        <wpfToolkit:SideBarItem>
+            <wpfToolkit:SideBarItem.Header>
+                <Polyline
+                    Points="10,0 0,20 20,20"
+                    Fill="#808080"/>
+            </wpfToolkit:SideBarItem.Header>
+            
+            <Border>
+                <TextBlock
+                    Text="aaa"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="40"/>
             </Border>
         </wpfToolkit:SideBarItem>
 
-        <wpfToolkit:SideBarItem Header="bbb">
-            <TextBlock Text="bbb"/>
+        <wpfToolkit:SideBarItem>
+            <wpfToolkit:SideBarItem.Header>
+                <Rectangle
+                    Width="20"
+                    Height="20"
+                    Fill="#808080"/>
+            </wpfToolkit:SideBarItem.Header>
+            
+            <TextBlock
+                Text="bbb"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="40"/>
         </wpfToolkit:SideBarItem>
+
+        <wpfToolkit:SideBarItem>
+            <wpfToolkit:SideBarItem.Header>
+                <Ellipse
+                    Width="20"
+                    Height="20"
+                    Fill="#808080"/>
+            </wpfToolkit:SideBarItem.Header>
+
+            <TextBlock
+                Text="ccc"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="40"/>
+        </wpfToolkit:SideBarItem>
+
+        <wpfToolkit:SideBar.Buttons>
+            <Button
+                Content="123"
+                Click="Button_Click_123"/>
+
+            <Button
+                Content="456"
+                Click="Button_Click_456"/>
+        </wpfToolkit:SideBar.Buttons>
 
     </wpfToolkit:SideBar>
 

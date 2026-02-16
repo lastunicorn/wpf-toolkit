@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 namespace DustInTheWind.WpfToolkit;
 
@@ -20,6 +22,40 @@ public class SideBar : Selector
     {
         get => (ObservableCollection<Button>)GetValue(ButtonsProperty);
         set => SetValue(ButtonsProperty, value);
+    }
+
+    #endregion
+
+    #region ItemSelectedBackground DependencyProperty
+
+    public static readonly DependencyProperty ItemSelectedBackgroundProperty = DependencyProperty.Register(
+        nameof(ItemSelectedBackground),
+        typeof(Brush),
+        typeof(SideBar),
+        new PropertyMetadata(null)
+    );
+
+    public Brush ItemSelectedBackground
+    {
+        get => (Brush)GetValue(ItemSelectedBackgroundProperty);
+        set => SetValue(ItemSelectedBackgroundProperty, value);
+    }
+
+    #endregion
+
+    #region ItemMouseOverBackground DependencyProperty
+
+    public static readonly DependencyProperty ItemMouseOverBackgroundProperty = DependencyProperty.Register(
+        nameof(ItemMouseOverBackground),
+        typeof(Brush),
+        typeof(SideBar),
+        new PropertyMetadata(null)
+    );
+
+    public Brush ItemMouseOverBackground
+    {
+        get => (Brush)GetValue(ItemMouseOverBackgroundProperty);
+        set => SetValue(ItemMouseOverBackgroundProperty, value);
     }
 
     #endregion
@@ -51,6 +87,26 @@ public class SideBar : Selector
     public SideBar()
     {
         Buttons = [];
+        Loaded += OnLoaded;
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (SelectedItem == null)
+        {
+            foreach (object item in Items)
+            {
+                if (item is SideBarItem sideBarItem && sideBarItem.IsSelected)
+                {
+                    SelectedItem = item;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            UpdateSelectedContent();
+        }
     }
 
     protected override void OnSelectionChanged(SelectionChangedEventArgs e)
@@ -73,6 +129,23 @@ public class SideBar : Selector
             
             if (container != null)
                 container.IsSelected = true;
+        }
+    }
+
+    protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
+    {
+        base.OnItemsChanged(e);
+
+        if (e.Action == NotifyCollectionChangedAction.Add && SelectedItem == null)
+        {
+            foreach (object item in e.NewItems)
+            {
+                if (item is SideBarItem sideBarItem && sideBarItem.IsSelected)
+                {
+                    SelectedItem = item;
+                    break;
+                }
+            }
         }
     }
 
