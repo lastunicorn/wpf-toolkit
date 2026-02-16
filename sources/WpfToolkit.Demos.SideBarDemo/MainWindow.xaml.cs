@@ -11,14 +11,4 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-
-    private void Button_Click_123(object sender, RoutedEventArgs e)
-    {
-        MessageBox.Show("Button 123");
-    }
-
-    private void Button_Click_456(object sender, RoutedEventArgs e)
-    {
-        MessageBox.Show("Button 456");
-    }
 }
