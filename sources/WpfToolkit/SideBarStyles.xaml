@@ -1,13 +1,23 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:DustInTheWind.WpfTools.CustomControls">
+    xmlns:wpfToolkit="clr-namespace:DustInTheWind.WpfToolkit">
 
-    <Style TargetType="{x:Type local:SideBarNavigator}">
-        <Setter Property="Foreground" Value="{DynamicResource SideBarNavigator_ForegroundBrush}" />
-        <Setter Property="Background" Value="{DynamicResource SideBarNavigator_BackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource SideBarNavigator_BorderBrush}" />
-        <Setter Property="TabStripPlacement" Value="Left" />
+    <SolidColorBrush x:Key="Dust_SideBar_ForegroundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="Dust_SideBar_BorderBrush" Color="Gray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_BackgroundBrush" Color="Gray"/>
+
+    <SolidColorBrush x:Key="Dust_SideBar_Item_Selected_BackgroundBrush" Color="LightGray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Item_Selected_BorderBrush" Color="LightGray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Item_MouseOver_BackgroundBrush" Color="LightGray"/>
+
+    <SolidColorBrush x:Key="Dust_SideBar_Button_HoverBrush" Color="Gray"/>
+    <SolidColorBrush x:Key="Dust_SideBar_Button_PressedBrush" Color="Gray"/>
+
+    <Style TargetType="{x:Type wpfToolkit:SideBar}">
+        <Setter Property="Foreground" Value="{StaticResource Dust_SideBar_ForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource Dust_SideBar_BackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Dust_SideBar_BorderBrush}" />
         <Setter Property="Padding" Value="5 5 5 10" />
         <Setter Property="Margin" Value="0" />
 
@@ -19,7 +29,7 @@
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:SideBarNavigator}">
+                <ControlTemplate TargetType="{x:Type wpfToolkit:SideBar}">
                     <DockPanel>
 
                         <Border
@@ -36,14 +46,12 @@
                                     DockPanel.Dock="Bottom"
                                     ItemsSource="{TemplateBinding Buttons}" />
 
-                                <TabPanel
-                                    IsItemsHost="true"
-                                    Background="Transparent" />
+                                <ItemsPresenter />
 
                             </DockPanel>
                         </Border>
 
-                        <ContentPresenter ContentSource="SelectedContent" />
+                        <ContentPresenter Content="{TemplateBinding SelectedContent}" />
 
                     </DockPanel>
                 </ControlTemplate>
@@ -52,17 +60,15 @@
 
         <!--
         ================================================================================================
-        Content Template
+        Items Panel
         ================================================================================================
         -->
 
-        <Setter Property="ContentTemplate">
+        <Setter Property="ItemsPanel">
             <Setter.Value>
-                <DataTemplate>
-                    <Border Padding="10">
-                        <ContentPresenter Content="{Binding}"/>
-                    </Border>
-                </DataTemplate>
+                <ItemsPanelTemplate>
+                    <StackPanel Background="Transparent" />
+                </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
 
@@ -75,13 +81,16 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
 
-                <Style TargetType="{x:Type TabItem}">
+                <Style TargetType="{x:Type wpfToolkit:SideBarItem}">
+
+                    <Setter Property="SelectedBackground" Value="{StaticResource SideBar_Item_Selected_BackgroundBrush}" />
+                    <Setter Property="MouseOverBackground" Value="{StaticResource SideBar_Item_MouseOver_BackgroundBrush}" />
 
                     <Setter Property="HeaderTemplate">
                         <Setter.Value>
                             <DataTemplate>
                                 <ContentControl
-                                    Content="{TemplateBinding Content}"
+                                    Content="{Binding}"
                                     FontSize="{DynamicResource DefaultFontSize}"
                                     IsTabStop="False" />
                             </DataTemplate>
@@ -90,32 +99,30 @@
 
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type TabItem}">
+                            <ControlTemplate TargetType="{x:Type wpfToolkit:SideBarItem}">
 
                                 <Border
                                     Name="PART_Panel"
                                     Margin="5"
                                     CornerRadius="2"
                                     Width="40"
-                                    Height="40">
+                                    Height="40"
+                                    Background="Transparent">
 
                                     <ContentPresenter
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
-                                        ContentSource="Header" />
+                                        Content="{TemplateBinding Header}"
+                                        ContentTemplate="{TemplateBinding HeaderTemplate}" />
 
                                 </Border>
 
                                 <ControlTemplate.Triggers>
 
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter TargetName="PART_Panel" Property="Background" Value="{DynamicResource SideBarNavigator_Item_Selected_BackgroundBrush}" />
-                                        <Setter TargetName="PART_Panel" Property="BorderBrush" Value="{DynamicResource SideBarNavigator_Item_Selected_BorderBrush}" />
+                                        <Setter TargetName="PART_Panel" Property="Background" Value="{Binding SelectedBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        <Setter TargetName="PART_Panel" Property="BorderBrush" Value="{StaticResource SideBar_Item_Selected_BorderBrush}" />
                                         <Setter TargetName="PART_Panel" Property="BorderThickness" Value="1" />
-                                    </Trigger>
-
-                                    <Trigger Property="IsSelected" Value="False">
-                                        <Setter TargetName="PART_Panel" Property="Background" Value="Transparent" />
                                     </Trigger>
 
                                     <MultiTrigger>
@@ -126,7 +133,7 @@
                                         </MultiTrigger.Conditions>
 
                                         <MultiTrigger.Setters>
-                                            <Setter TargetName="PART_Panel" Property="Background" Value="{DynamicResource SideBarNavigator_Item_MouseOver_BackgroundBrush}" />
+                                            <Setter TargetName="PART_Panel" Property="Background" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource TemplatedParent}}" />
                                         </MultiTrigger.Setters>
 
                                     </MultiTrigger>
@@ -143,16 +150,5 @@
         </Setter>
 
     </Style>
-
-    <SolidColorBrush x:Key="SideBarNavigator_ForegroundBrush" Color="Black"/>
-    <SolidColorBrush x:Key="SideBarNavigator_BorderBrush" Color="Gray"/>
-    <SolidColorBrush x:Key="SideBarNavigator_BackgroundBrush" Color="LightGray"/>
-
-    <SolidColorBrush x:Key="SideBarNavigator_Item_Selected_BackgroundBrush" Color="LightGray"/>
-    <SolidColorBrush x:Key="SideBarNavigator_Item_Selected_BorderBrush" Color="LightGray"/>
-    <SolidColorBrush x:Key="SideBarNavigator_Item_MouseOver_BackgroundBrush" Color="Gray"/>
-
-    <SolidColorBrush x:Key="SideBarNavigator_Button_HoverBrush" Color="Gray"/>
-    <SolidColorBrush x:Key="SideBarNavigator_Button_PressedBrush" Color="Gray"/>
 
 </ResourceDictionary>

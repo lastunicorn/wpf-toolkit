@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/DustInTheWind.WpfTools.CustomControls;component/SideBarNavigatorStyles.xaml" />
+        <ResourceDictionary Source="/DustInTheWind.WpfToolkit;component/SideBarStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

@@ -5,12 +5,12 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
-		<AssemblyName>DustInTheWind.WpfTools.$(MSBuildProjectName)</AssemblyName>
-		<RootNamespace>DustInTheWind.WpfTools.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+		<AssemblyName>DustInTheWind.$(MSBuildProjectName)</AssemblyName>
+		<RootNamespace>DustInTheWind.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\WpfTools.CustomControls\WpfTools.CustomControls.csproj" />
+		<ProjectReference Include="..\WpfToolkit\WpfToolkit.csproj" />
 	</ItemGroup>
 
 </Project>

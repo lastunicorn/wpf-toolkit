@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Demos.SideBarNavigatorDemo;
+namespace DustInTheWind.Demos.SideBarDemo;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
