@@ -38,8 +38,7 @@
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
                             <Border
-                                Padding="{TemplateBinding Padding}"
-                                Background="{x:Null}">
+                                Padding="{TemplateBinding Padding}">
 
                                 <Grid>
 
