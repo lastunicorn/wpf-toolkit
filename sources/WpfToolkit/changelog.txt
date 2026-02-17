@@ -3,4 +3,5 @@
 
 Ver 1.0.0
 --------------------------------------------------------------------------------
-[new   ] Initial release of WPF Toolkit.
+[new   ] Created SideBar control.
+[new   ] Created ZoomPanel control.
