@@ -4,15 +4,17 @@
     xmlns:local="clr-namespace:DustInTheWind.WpfToolkit">
 
     <Style TargetType="{x:Type local:ShyControl}">
+        <Setter Property="Padding" Value="10" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ShyControl}">
-                    
+
                     <Border
                         Background="Transparent"
-                        Padding="10"
+                        Padding="{TemplateBinding Padding}"
                         x:Name="PART_Border">
-                        
+
                         <ContentPresenter>
                             <ContentPresenter.Style>
                                 <Style TargetType="ContentPresenter">
@@ -26,7 +28,7 @@
                             </ContentPresenter.Style>
                         </ContentPresenter>
                     </Border>
-                    
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
