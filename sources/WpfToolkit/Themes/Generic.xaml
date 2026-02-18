@@ -5,6 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/DustInTheWind.WpfToolkit;component/SideBarStyles.xaml" />
         <ResourceDictionary Source="/DustInTheWind.WpfToolkit;component/ZoomPanelStyles.xaml" />
+        <ResourceDictionary Source="/DustInTheWind.WpfToolkit;component/ShyControlStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
