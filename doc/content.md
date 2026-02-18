@@ -4,8 +4,13 @@
 
 - `SideBar`
 - `ZoomPanel`
+- `ShyControl`
 
 ## Converters
 
 - `PointToStringConverter`
+
+## Behaviors
+
+- 
 
