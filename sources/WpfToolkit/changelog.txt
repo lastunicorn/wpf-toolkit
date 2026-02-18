@@ -1,6 +1,11 @@
 ﻿WPF Toolkit
 ================================================================================
 
+Ver 1.2.0
+--------------------------------------------------------------------------------
+[bugfix] Added missing generic style for ShyControl.
+
+
 Ver 1.1.0
 --------------------------------------------------------------------------------
 [new   ] Created the ShyControl, which is a control that is displayed only when
