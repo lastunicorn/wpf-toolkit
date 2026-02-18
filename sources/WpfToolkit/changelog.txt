@@ -5,6 +5,8 @@ Ver 1.1.0
 --------------------------------------------------------------------------------
 [new   ] Created the ShyControl, which is a control that is displayed only when
          the mouse is over it.
+[new   ] Created the WindowDragBehavior behavior, which allows you to drag a
+         window by dragging any element in it.
 
 
 Ver 1.0.0
