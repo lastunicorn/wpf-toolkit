@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Demos/">
+    <Project Path="WpfToolkit.Demos.WindowDragDemo/WpfToolkit.Demos.WindowDragDemo.csproj" Id="4a9ae85b-7cca-4262-8aa8-f3d0c6382f7e" />
     <Project Path="WpfToolkit.Demos.ZoomPanelDemo/WpfToolkit.Demos.ZoomPanelDemo.csproj" Id="f63ec316-93e7-4c0d-9b79-8de8f38e4799" />
     <Project Path="WpfToolkit.Demos.SideBarDemo/WpfToolkit.Demos.SideBarDemo.csproj" Id="515f6a4c-7b5e-4596-898f-2acb2f701ad1" />
   </Folder>
